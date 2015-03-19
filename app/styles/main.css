@@ -41,6 +41,16 @@ body {
   margin: 30px 0;
 }
 
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container-semi {
+  margin: 0 auto;
+  width: 95%;
+}
+
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
