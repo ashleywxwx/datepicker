@@ -14,8 +14,6 @@ hs_err_pid*
 .metadata
 .gradle
 bin/
-tmp/
-*.tmp
 *.bak
 *.swp
 *~.nib
