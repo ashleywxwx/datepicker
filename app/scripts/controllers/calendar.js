@@ -8,7 +8,7 @@
  * Controller of the datepickerApp
  */
 angular.module('datepickerApp')
-  .controller('CalendarCtrl', function () {
+  .controller('CalendarCtrl', function (PickerSerivce) {
     console.log('CalendarCtrl created');
 
     var vm = this;
@@ -19,6 +19,8 @@ angular.module('datepickerApp')
     vm.getMonths = getMonths;
     vm.getMonth = getMonth;
     vm.isDate = isDate;
+    vm.isPicked = isPicked;
+    vm.startPicking = PickerSerivce.startPicking;
 
     function isDate(w,d,t,m){ // jshint ignore:line
       if((((w*7)+1)+d)<=(vm.dayMatrix[t][m])) {
@@ -32,6 +34,10 @@ angular.module('datepickerApp')
 
     function getMonths(){ // jshint ignore:line
       return vm.months;
+    }
+
+    function isPicked(w,d,t,m){
+      return false;
     }
 
   });

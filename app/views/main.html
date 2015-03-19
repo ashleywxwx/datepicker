@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-default" ng-click="calendarCtrl.startPicking()">Pick</button>
 <!-- Holds all calendars to wide width -->
 <div class = "container-semi" >
   <!-- Trimester "Rows" -->
@@ -15,7 +16,8 @@
           <div class="row seven-cols" ng-repeat="w in [0,1,2,3,4]">
             <!-- Day "coloumns" -->
             <div class="col-lg-1 " ng-repeat="d in [0,1,2,3,4,5,6]" ng-show="calendarCtrl.isDate(w,d,t,m)">
-              <span class="label label-default">{{ ((w*7)+1)+d }}</span>
+              <span class="label label-default" ng-show="!calendarCtrl.isPicked()">{{ ((w*7)+1)+d }}</span>
+              <span class="label label-primary" ng-show="calendarCtrl.isPicked()">{{ ((w*7)+1)+d }}</span>
             </div>
           </div>
         </div>
