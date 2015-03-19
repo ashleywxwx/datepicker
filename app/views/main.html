@@ -1,15 +1,27 @@
-<div class = "container-semi" ng-controller="CalendarCtrl as calendarCtrl" >
-<div class="row" ng-repeat="t in [0,1,2]">
-  Trimester
-  <br>
-  <div class="col-md-3" ng-repeat="m in [0,1,2,3]">
-    Month
-    <div class="panel panel-default">
-      <div class="panel-heading">{{calendarCtrl.getMonth(t,m)}}</div>
-      <div class="panel-body">
-        Panel content
+<!-- Holds all calendars to wide width -->
+<div class = "container-semi" >
+  <!-- Trimester "Rows" -->
+  <div class="row" ng-repeat="t in [0,1,2]">
+    <br>
+    <!-- Months "Columns" -->
+    <div class="col-md-3" ng-repeat="m in [0,1,2,3]">
+      Month
+      <!-- Month panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">{{calendarCtrl.getMonth(t,m)}}</div>
+        <!-- Month Calendar -->
+        <div class="panel-body">
+          <!-- Week "row" -->
+          <div class="row" ng-repeat="w in [0,1,2,3,4]">
+            <!-- Day "coloumns" -->
+            <div class="col-xs-1" ng-repeat="d in [0,1,2,3,4,5,6]" ng-show="calendarCtrl.isDate(w,d,t,m)">
+              {{ ((w*7)+1)+d }}
+            </div>
+          </div>
+
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>

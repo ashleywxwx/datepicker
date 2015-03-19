@@ -17,7 +17,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'CalendarCtrl as calendarCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
