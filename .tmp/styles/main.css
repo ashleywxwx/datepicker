@@ -120,4 +120,9 @@ body {
     }
   }
 
+  /* Date box in calendar */
+  div.date {
+    border: 1px solid;
+  }
+
 }

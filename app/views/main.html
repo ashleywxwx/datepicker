@@ -14,8 +14,8 @@
           <!-- Week "row" -->
           <div class="row seven-cols" ng-repeat="w in [0,1,2,3,4]">
             <!-- Day "coloumns" -->
-            <div class="col-lg-1" ng-repeat="d in [0,1,2,3,4,5,6]" ng-show="calendarCtrl.isDate(w,d,t,m)">
-              {{ ((w*7)+1)+d }}
+            <div class="col-lg-1 " ng-repeat="d in [0,1,2,3,4,5,6]" ng-show="calendarCtrl.isDate(w,d,t,m)">
+              <span class="label label-default">{{ ((w*7)+1)+d }}</span>
             </div>
           </div>
         </div>
