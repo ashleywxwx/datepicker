@@ -14,6 +14,7 @@ angular.module('datepickerApp')
     var vm = this;
     vm.startPicking = startPicking;
     vm.isPicked = isPicked;
+    vm.mapDate = mapDate;
 
     var picked = [];
     var started = false;
@@ -44,10 +45,30 @@ angular.module('datepickerApp')
       }
 
       function isPicked(day){
+
         if(picked.indexOf(day)!=-1){
           return true;
         }
       }
+
+    function mapDate(t,m,w,d){
+      // January 1st = 0
+      var date = 0;
+
+      // Trimesters
+      // 0 does not increase
+      switch(t) {
+        case 1:
+          date+=121;
+          break;
+        case 2:
+          date+=244;
+          break;
+      }
+
+
+      return date;
+    }
 
 
 
