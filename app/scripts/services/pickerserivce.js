@@ -12,60 +12,62 @@ angular.module('datepickerApp')
 
     var vm = this;
     vm.startPicking = startPicking;
+    vm.stopPicking = stopPicking;
+    vm.resetPicking = resetPicking;
     vm.isPicked = isPicked;
+    vm.isRunning = isRunning;
 
     var picked = [];
-    var started = false;
     var TIMEOUT = 1000;
+    var mytimeout;
+    var started = false;
+
+    function isRunning(){
+      return (started);
+    }
 
     function startPicking(){
-      console.log("Picking started");
+      console.log('Starting picking.');
 
-        var onTimeout = function(){
+      started = true;
+      // Start recursive picking function
+      mytimeout = $timeout(onPickTick,TIMEOUT);
+    }
 
-          var startingPicked = picked.length;
-          while((picked.length==startingPicked)&&(picked.length<366)) {
-            var rand = Math.floor((Math.random() * 366)+1);
+    // On each iteration of the timeout, pick a random number
+    function onPickTick(){
+      var startingPicked = picked.length; // I don't remember why I'm doing this, but it works :|
+      while((picked.length===startingPicked)&&(picked.length<366)) {
+        var rand = Math.floor((Math.random() * 366)+1);
 
-            if (picked.indexOf(rand) == -1) {
-              picked.push(rand);
-              console.log("ding: " + picked);
-            }
-          }
-
-          mytimeout = $timeout(onTimeout,TIMEOUT);
-        };
-
-        var mytimeout = $timeout(onTimeout,TIMEOUT);
-
-        var stop = function(){
-          $timeout.cancel(mytimeout);
+        if (picked.indexOf(rand) === -1) {
+          picked.push(rand);
+          console.log('picked: ' + rand);
         }
       }
+      mytimeout = $timeout(onPickTick,TIMEOUT);
+    }
 
-      function isPicked(day){
-        if(picked.indexOf(day)!=-1){
-          return true;
-        }
+    function stopPicking(){
+      console.log('Stopping picking.');
+      $timeout.cancel(mytimeout);
+    }
+
+    function resetPicking(){
+      // Just to be sure
+      stopPicking();
+
+      // Reset flag
+      started = false;
+
+      // Reset picked
+      picked = [];
+    }
+
+    function isPicked(day){
+      if(picked.indexOf(day)!==-1){
+        return true;
       }
-
-    //function mapDate(t,m,w,d){
-    //  // January 1st = 0
-    //  var date = 0;
-    //
-    //  // Trimesters
-    //  // 0 does not increase
-    //  switch(t) {
-    //    case 1:
-    //      date+=121;
-    //      break;
-    //    case 2:
-    //      date+=244;
-    //      break;
-    //  }
-    //
-    //
-    //  return date;
-    //}
+    }
 
   });

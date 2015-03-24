@@ -12,17 +12,18 @@ angular.module('datepickerApp')
     console.log('CalendarCtrl created');
 
     var vm = this;
-    vm.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    vm.monthMatrix = [['January','February','March','April'],['May','June','July','August'],['September','October','November','December']];
-    vm.monthDates = [31,29,31,30,31,30,31,31,30,31,30,31];
-    vm.getMonths = getMonths;
     vm.getMonth = getMonth;
+    vm.getDate = getDate;
     vm.isDate = isDate;
     vm.isPicked = isPicked;
-    vm.startPicking = PickerSerivce.startPicking;
     vm.dayOfYear = dayOfYear;
-    vm.getDate = getDate;
+    vm.startPicking = PickerSerivce.startPicking;
+    vm.stopPicking = PickerSerivce.stopPicking;
+    vm.resetPicking = PickerSerivce.resetPicking;
+    vm.isRunning = PickerSerivce.isRunning;
 
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var monthDates = [31,29,31,30,31,30,31,31,30,31,30,31];
     var LEAP_YEAR = 2016;
 
     function getDate(m,d){
@@ -31,25 +32,20 @@ angular.module('datepickerApp')
     }
 
     function isDate(m,d){
-      if(vm.monthDates[m-1]>=d){//monthDates is 0 based
+      if(monthDates[m-1]>=d){//monthDates is 0 based
         return true;
       }
     }
 
     function getMonth(month){
-      return vm.months[month-1];// months is 0 based
-    }
-
-    function getMonths(){ // jshint ignore:line
-      return vm.months;
+      return months[month-1];//months is 0 based
     }
 
     function isPicked(m,d){
-      return(PickerSerivce.isPicked(dayOfYear(m,d)))
+      return(PickerSerivce.isPicked(dayOfYear(m,d)));
     }
 
     function dayOfYear(m,d){
-
       // Get start and end dates
       var startDate = getDate(1,1).setDate(-1);
       var givenDate = getDate(m,d);

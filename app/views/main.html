@@ -1,12 +1,14 @@
-<button type="button" class="btn btn-default" ng-click="calendarCtrl.startPicking()">Pick</button>
 <!-- Holds all calendars to wide width -->
 <div class = "container-semi" >
+  <!-- Buttons \o/ -->
+  <button type="button" class="btn btn-success" ng-click="calendarCtrl.startPicking()" ng-show="!calendarCtrl.isRunning()">Start</button>
+  <button type="button" class="btn btn-warning" ng-click="calendarCtrl.stopPicking()"  ng-show="calendarCtrl.isRunning()">Pause</button>
+  <button type="button" class="btn btn-danger"  ng-click="calendarCtrl.resetPicking()" ng-show="calendarCtrl.isRunning()">Reset</button>
   <!-- Trimester "Rows" -->
   <div class="row" ng-repeat="t in [0,4,8]">
     <br>
     <!-- Months "Columns" -->
     <div class="col-md-3" ng-repeat="m in [1,2,3,4]">
-      Month
       <!-- Month panel -->
       <div class="panel panel-default">
         <div class="panel-heading">{{calendarCtrl.getMonth(t+m)}}</div>
